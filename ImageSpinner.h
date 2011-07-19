@@ -12,7 +12,6 @@
 @interface ImageSpinner : UIView {
     UIImageView *_imageView;
     BOOL _animate;
-    BOOL _firstHalf;
     double _rotationAngle;
 }
 
