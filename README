@@ -1,0 +1,15 @@
+Simple class that let's you assign an image and spin it 360deg endlessly
+
+eg. 
+
+// initialization
+ImageSpinner *spinner = [[ImageSpinner alloc] initWithImage:[UIImage imageNamed:@"example.png"]];
+
+// Animation methods
+[spinner startAnimation];
+[spinner stopAnimation];
+
+// Set another image
+[spinner setImage:[UIImage imageNamed:@"example2.png"];
+
+Note: The image will continue spinning to it's original position even when you call stop animation.
