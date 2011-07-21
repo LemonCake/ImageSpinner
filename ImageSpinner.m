@@ -9,72 +9,67 @@
 #import "ImageSpinner.h"
 
 @interface ImageSpinner ()
-
+- (void)configure;
 - (void)repeatAnimation;
-
 @end
+
 @implementation ImageSpinner
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        
-    }
-    return self;
-}
-
 - (id)initWithImage:(UIImage *)image {
-    if ((self = [super init])) {
-        _imageView = [[UIImageView alloc ] initWithImage:image];
-        _rotationAngle = 0;
-        self.frame = _imageView.frame;
-        self.userInteractionEnabled = NO;
-        [self addSubview:_imageView];
+    if ((self = [super initWithImage:image])) {
+        [self configure];
     }
     
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if ((self = [super initWithCoder:aDecoder])) {
+        [self configure];
+    }
+    return self;
+}
+
+- (void)configure {
+    _rotationAngle = 0;
+    self.userInteractionEnabled = NO;
+}
+
 - (void)startAnimating {
-    if(_animate || _rotationAngle != 0)
+    if(_animate || _rotationAngle != 0) {
         return;
+    }
     
     _animate = YES;
     [self repeatAnimation];
 }
 
 - (void)repeatAnimation {    
-    _rotationAngle = _rotationAngle + M_PI / 2;
+    _rotationAngle += M_PI / 2.f;
     
-    if(_rotationAngle == 2 * M_PI)
-        _rotationAngle = 0;
+    if(_rotationAngle == 2.f * M_PI) {
+        _rotationAngle = 0.f;
+    }    
     
-    
-    if (_animate || _rotationAngle != M_PI / 2) {
+    if (_animate || _rotationAngle != M_PI / 2.f) {
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.25];
         [UIView setAnimationDelegate:self];
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
         [UIView setAnimationDidStopSelector:@selector(repeatAnimation)];
-        _imageView.transform = CGAffineTransformMakeRotation(_rotationAngle);
+        self.transform = CGAffineTransformMakeRotation(_rotationAngle);
         [UIView commitAnimations];
-    } else
-        _rotationAngle = 0;
+    } else {
+        _rotationAngle = 0.f;
+    }
+}
+
+- (BOOL)isAnimating {
+    return _animate;
 }
 
 - (void)stopAnimating {
     _animate = NO;
 }
 
-- (void)dealloc
-{
-    [_imageView release];
-    [super dealloc];
-}
-
-- (void)setImage:(UIImage *)image {
-    _imageView.image = image;
-}
 @end
