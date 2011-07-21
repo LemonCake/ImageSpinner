@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageSpinner.h"
 
 @interface ExampleViewController : UIViewController
-
+@property(nonatomic,retain) IBOutlet ImageSpinner *spinner;
 @end
