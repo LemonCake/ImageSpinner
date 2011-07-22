@@ -13,3 +13,5 @@ ImageSpinner *spinner = [[ImageSpinner alloc] initWithImage:[UIImage imageNamed:
 [spinner setImage:[UIImage imageNamed:@"example2.png"];
 
 Note: The image will continue spinning to it's original position even when you call stop animation.
+
+Space shuttle image from The Noun Project (http://thenounproject.com/). Licensed under Creative Commons Attribution.
