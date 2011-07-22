@@ -9,16 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ImageSpinner : UIView {
-    UIImageView *_imageView;
+@interface ImageSpinner : UIImageView {
     BOOL _animate;
     double _rotationAngle;
 }
-
-- (id)initWithImage:(UIImage *)image;
-
 - (void)startAnimating;
 - (void)stopAnimating;
-- (void)setImage:(UIImage *)image;
-
 @end
